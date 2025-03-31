@@ -17,21 +17,21 @@ def home():
 	return {'greeting': "Welcome to Jobify API! Let\'s find your dream job."}
 
 @app.get('/difficulty', tags=["Difficulty"], status_code=status.HTTP_200_OK, response_model=List[schemas.DifficultyOut])
-async def get(db: Session = Depends(get_db)):
+async def get_difficulties(db: Session = Depends(get_db)):
 	datas = db.query(models.Difficulty).all()
 	if not datas:
 		raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail="No difficulties found in the database.")
 	return datas
 
 @app.get('/difficulty/{id}', tags=["Difficulty"], status_code=status.HTTP_200_OK, response_model=schemas.DifficultyOut)
-async def show(id: int, db: Session = Depends(get_db)):
+async def show_difficulty(id: int, db: Session = Depends(get_db)):
 	data = db.query(models.Difficulty).filter(models.Difficulty.id == id).first()
 	if not data:
 		raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Difficulty with ID {id} does not exist.")
 	return data
 
 @app.post('/difficulty', tags=["Difficulty"], status_code=status.HTTP_201_CREATED, response_model=schemas.DifficultyOut)
-async def create(request: schemas.DifficultyIn, db: Session = Depends(get_db)):
+async def create_difficulty(request: schemas.DifficultyIn, db: Session = Depends(get_db)):
 	new_data = models.Difficulty(level=request.level.capitalize())
 	db.add(new_data)
 	db.commit()
@@ -39,7 +39,7 @@ async def create(request: schemas.DifficultyIn, db: Session = Depends(get_db)):
 	return new_data
 
 @app.delete('/difficulty/{id}', tags=["Difficulty"], status_code=status.HTTP_204_NO_CONTENT)
-async def destroy(id: int, db: Session = Depends(get_db)):
+async def delete_difficulty(id: int, db: Session = Depends(get_db)):
 	data_delete = db.query(models.Difficulty).filter(models.Difficulty.id == id)
 	if not data_delete.first():
 		raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Cannot delete. Difficulty with ID {id} does not exist.")
@@ -48,7 +48,7 @@ async def destroy(id: int, db: Session = Depends(get_db)):
 	return {"message": f"Difficulty with ID {id} has been successfully deleted."}
 
 @app.put('/difficulty/{id}', tags=["Difficulty"], status_code=status.HTTP_202_ACCEPTED)
-async def update(id: int, request: schemas.DifficultyIn, db: Session = Depends(get_db)):
+async def update_difficulty(id: int, request: schemas.DifficultyIn, db: Session = Depends(get_db)):
 	data_update = db.query(models.Difficulty).filter(models.Difficulty.id == id)
 	if not data_update.first():
 		raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Cannot update. Difficulty with ID {id} does not exist.")
