@@ -6,11 +6,11 @@ class Difficulty(BaseModel):
 
 class DifficultyIn(Difficulty):
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class DifficultyOut(Difficulty):
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 
 class Region(BaseModel):
@@ -20,8 +20,29 @@ class Region(BaseModel):
 
 class RegionIn(Region):
     class Config:
-        orm_mode = True
+        from_attributes = True
 
 class RegionOut(Region):
     class Config:
-        orm_mode = True
+        from_attributes = True
+
+class Job(BaseModel):
+    title: str
+    description: str
+    salary: Union[int, None] = None
+    difficulty_id: int
+    region_id: int
+
+class JobIn(Job):
+    class Config:
+        from_attributes = True
+
+class JobOut(BaseModel):
+    title: str
+    description: str
+    salary: Union[int, None] = None
+    difficulty: DifficultyOut  # Correct reference to nested DifficultyOut
+    region: RegionOut          # Correct reference to nested RegionOut
+
+    class Config:
+        from_attributes = True
