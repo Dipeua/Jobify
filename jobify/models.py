@@ -6,3 +6,11 @@ class Difficulty(Base):
 
     id = Column(Integer, primary_key=True, index=True)
     level = Column(String, index=True)
+
+class Region(Base):
+    __tablename__ = 'regions'
+
+    id = Column(Integer, primary_key=True, index=True)
+    code = Column(String)
+    name = Column(String, index=True)
+    region_image_url = Column(String)
