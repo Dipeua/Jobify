@@ -46,3 +46,17 @@ class JobOut(BaseModel):
 
     class Config:
         from_attributes = True
+
+class User(BaseModel):
+    username: str
+    email: str
+    password: str
+
+class UserIn(User):
+    class Config:
+        from_attributes = True
+
+class UserOut(BaseModel):
+    username: str
+    email: str
+    # Suppression du champ `password` pour des raisons de sécurité

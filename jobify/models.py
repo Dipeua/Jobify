@@ -31,3 +31,11 @@ class Job(Base):
 
     region_id = Column(Integer, ForeignKey("regions.id"), nullable=False)
     region = relationship("Region", back_populates="jobs")  # Correct relationship name
+
+class User(Base):
+    __tablename__ = 'users'
+
+    id = Column(Integer, primary_key=True, index=True)
+    username = Column(String, nullable=False)  # Ajout de nullable=False
+    email = Column(String, nullable=False, unique=True)  # Ajout de unique=True
+    password = Column(String, nullable=False)  # Ajout de nullable=False
