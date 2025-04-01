@@ -17,7 +17,7 @@ app.include_router(auth.router)
 app.include_router(difficulty.router, prefix='/api')
 app.include_router(region.router, prefix='/api')
 app.include_router(job.router, prefix='/api')
-app.include_router(user.router, prefix='/api')
+app.include_router(user.router)
 
 @app.get('/')
 def home():
