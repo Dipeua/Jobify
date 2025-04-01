@@ -3,6 +3,7 @@ from .. import schemas
 from ..database import get_db
 from sqlalchemy.orm import Session
 from ..repository import user_repository
+from ..utility import Oauth2
 
 router = APIRouter(
 	prefix="/user",
@@ -14,5 +15,5 @@ async def create_user(request: schemas.UserIn, db: Session = Depends(get_db)):
 	return user_repository.create(request, db)
 
 @router.get('/{id}', status_code=status.HTTP_200_OK, response_model=schemas.UserOut)
-async def show_user(id: int, db: Session = Depends(get_db)):
+async def show_user(id: int, db: Session = Depends(get_db), currect_user: schemas.User = Depends(Oauth2.get_current_user)):
 	return user_repository.get(id, db)
