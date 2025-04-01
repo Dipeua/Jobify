@@ -59,4 +59,11 @@ class UserIn(User):
 class UserOut(BaseModel):
     username: str
     email: str
-    # Suppression du champ `password` pour des raisons de sécurité
+
+class AuthIn(BaseModel):
+    username: str
+    password: str
+
+class AuthOut(BaseModel):
+    username: str
+    email: str

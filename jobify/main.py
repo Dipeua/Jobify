@@ -3,7 +3,7 @@ from .database import engine, get_db
 from . import models, schemas
 from sqlalchemy.orm import Session
 from typing import List
-from .routers import difficulty, job, region, user
+from .routers import difficulty, job, region, user, auth
 
 models.Base.metadata.create_all(bind=engine)
 
@@ -13,6 +13,7 @@ app = FastAPI(
 	version='0.1'
 )
 
+app.include_router(auth.router)
 app.include_router(difficulty.router, prefix='/api')
 app.include_router(region.router, prefix='/api')
 app.include_router(job.router, prefix='/api')
