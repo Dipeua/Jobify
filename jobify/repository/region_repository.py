@@ -7,7 +7,7 @@ def get_all(db: Session):
     if not datas:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, 
-            detail="No datas found in the database."
+            detail="No regions found in the database."
         )
     return datas
 
@@ -45,7 +45,10 @@ def delete(id: int, db: Session):
 def update(id: int, request: schemas.DifficultyIn, db: Session):
     data_update = db.query(models.Region).filter(models.Region.id == id)
     if not data_update.first():
-        raise HTTPException(status_code=status.HTTP_404_NOT_FOUND, detail=f"Cannot update. Region with ID {id} does not exist.")
+        raise HTTPException(
+            status_code=status.HTTP_404_NOT_FOUND, 
+            detail=f"Cannot update. Region with ID {id} does not exist."
+        )
     data_update.update({
         'code': request.code.upper(),
         'name': request.name.capitalize(),
