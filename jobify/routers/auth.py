@@ -8,6 +8,6 @@ router = APIRouter(
 	tags=["Authentication"]
 )
 
-@router.post('/login', status_code=status.HTTP_200_OK, response_model=schemas.AuthOut)
+@router.post('/login', status_code=status.HTTP_200_OK, response_model=schemas.Token)
 async def login(request: schemas.AuthIn, db: Session = Depends(get_db)):
     return auth_repository.login(request, db)
