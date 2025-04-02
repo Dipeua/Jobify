@@ -2,14 +2,6 @@
 
 Jobify is a dynamic platform to discover and apply for the best job opportunities in Cameroon. Find a job that matches your skills, preferences, and location. Simple, fast, and efficient.
 
-## Features
-
-- **User Management**: User registration, secure login with JWT, and profile management.
-- **Job Management**: Create, update, delete, and search for job postings.
-- **Region Management**: Add and manage regions associated with jobs.
-- **Difficulty Levels**: Define and manage difficulty levels for jobs.
-- **Secure API**: Robust authentication and authorization.
-
 ## Installation
 
 1. Clone the repository:
