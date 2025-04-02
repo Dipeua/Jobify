@@ -41,6 +41,16 @@ Jobify is a dynamic platform to discover and apply for the best job opportunitie
    - Swagger UI: [http://127.0.0.1:8000/docs](http://127.0.0.1:8000/docs)
    - ReDoc: [http://127.0.0.1:8000/redoc](http://127.0.0.1:8000/redoc)
 
+## Configuration des variables d'environnement
+
+Avant de démarrer le projet, créez un fichier `.env` à la racine du projet et ajoutez-y les variables suivantes :
+
+```
+SECRET_KEY=your_secret_key_here
+```
+
+Cela garantit que les informations sensibles ne sont pas codées en dur dans le projet.
+
 ## Usage
 
 - Use the API endpoints to manage users, jobs, regions, and difficulty levels.

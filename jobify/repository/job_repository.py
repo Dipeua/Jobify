@@ -2,8 +2,8 @@ from sqlalchemy.orm import Session
 from .. import models, schemas
 from fastapi import HTTPException, status
 
-def get_all(db: Session):
-    datas = db.query(models.Job).all()
+def get_all(db: Session, skip: int = 0, limit: int = 10):
+    datas = db.query(models.Job).offset(skip).limit(limit).all()
     if not datas:
         raise HTTPException(
             status_code=status.HTTP_404_NOT_FOUND, 

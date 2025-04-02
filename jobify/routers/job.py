@@ -20,8 +20,8 @@ async def get_job(id: int, db: Session = Depends(get_db)):
     return job_repository.get(id, db)
 
 @router.get('/', status_code=status.HTTP_200_OK, response_model=List[schemas.JobOut])
-async def get_jobs(db: Session = Depends(get_db)):
-    return job_repository.get_all(db)
+async def get_jobs(skip: int = 0, limit: int = 10, db: Session = Depends(get_db)):
+    return job_repository.get_all(db, skip=skip, limit=limit)
 
 @router.delete('/{id}', status_code=status.HTTP_204_NO_CONTENT)
 async def delete_job(id: int, db: Session = Depends(get_db), current_user: schemas.User = Depends(Oauth2.get_current_user)):
