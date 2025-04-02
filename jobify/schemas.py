@@ -41,8 +41,8 @@ class JobOut(BaseModel):
     title: str
     description: str
     salary: Union[int, None] = None
-    difficulty: DifficultyOut  # Correct reference to nested DifficultyOut
-    region: RegionOut          # Correct reference to nested RegionOut
+    difficulty: DifficultyOut
+    region: RegionOut
 
     class Config:
         from_attributes = True

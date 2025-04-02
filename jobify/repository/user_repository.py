@@ -4,7 +4,6 @@ from fastapi import HTTPException, status
 from ..utility.Hashing import Hashing
 
 def create(request: schemas.UserIn, db: Session):
-    # Vérification si l'email existe déjà
     if db.query(models.User).filter(models.User.email == request.email).first():
         raise HTTPException(
             status_code=status.HTTP_400_BAD_REQUEST,

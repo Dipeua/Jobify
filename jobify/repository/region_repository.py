@@ -20,7 +20,7 @@ def get(id: int, db: Session):
         )
     return data
 
-def create(request: schemas.RegionIn, db: Session):  # Fixed schema reference
+def create(request: schemas.RegionIn, db: Session):
     new_data = models.Region(
         code=request.code.upper(),
         name=request.name.capitalize(),
@@ -42,7 +42,7 @@ def delete(id: int, db: Session):
     db.commit()
     return {"message": f"Region with ID {id} has been successfully deleted."}
 
-def update(id: int, request: schemas.RegionIn, db: Session):  # Fixed schema reference
+def update(id: int, request: schemas.RegionIn, db: Session):
     data_update = db.query(models.Region).filter(models.Region.id == id)
     if not data_update.first():
         raise HTTPException(

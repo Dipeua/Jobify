@@ -18,10 +18,10 @@ def get(id: int, db: Session):
             status_code=status.HTTP_404_NOT_FOUND, 
             detail=f"Job with ID {id} does not exist."
         )
-    return data  # Automatically includes nested relationships due to JobOut schema
+    return data
 
 
-def create(request: schemas.JobIn, db: Session):  # Fixed schema reference
+def create(request: schemas.JobIn, db: Session):
     new_data = models.Job(
         title=request.title,
         description=request.description,
@@ -32,7 +32,7 @@ def create(request: schemas.JobIn, db: Session):  # Fixed schema reference
     db.add(new_data)
     db.commit()
     db.refresh(new_data)
-    return new_data  # Automatically includes nested relationships due to JobOut schema
+    return new_data
 
 
 def delete(id: int, db: Session):
@@ -46,7 +46,7 @@ def delete(id: int, db: Session):
     db.commit()
     return {"message": f"Job with ID {id} has been successfully deleted."}
 
-def update(id: int, request: schemas.JobIn, db: Session):  # Fixed schema reference
+def update(id: int, request: schemas.JobIn, db: Session):
     data_update = db.query(models.Job).filter(models.Job.id == id)
     if not data_update.first():
         raise HTTPException(

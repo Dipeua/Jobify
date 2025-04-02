@@ -4,9 +4,9 @@ from .. import schemas
 import os
 from dotenv import load_dotenv
 
-load_dotenv()  # Charger les variables d'environnement
+load_dotenv()
 
-SECRET_KEY = os.getenv("SECRET_KEY", "default_secret_key")  # Utiliser une valeur par défaut si non défini
+SECRET_KEY = os.getenv("SECRET_KEY", "default_secret_key")
 ALGORITHM = "HS256"
 ACCESS_TOKEN_EXPIRE_MINUTES = 30
 
