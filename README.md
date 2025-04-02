@@ -14,7 +14,7 @@ Jobify is a dynamic platform to discover and apply for the best job opportunitie
 
 1. Clone the repository:
    ```bash
-   git clone https://github.com/your-username/jobify.git
+   git clone https://github.com/Dipeua/jobify.git
    cd jobify
    ```
 
