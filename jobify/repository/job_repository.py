@@ -21,7 +21,7 @@ def get(id: int, db: Session):
     return data  # Automatically includes nested relationships due to JobOut schema
 
 
-def create(request: schemas.DifficultyIn, db: Session):
+def create(request: schemas.JobIn, db: Session):  # Fixed schema reference
     new_data = models.Job(
         title=request.title,
         description=request.description,
@@ -46,7 +46,7 @@ def delete(id: int, db: Session):
     db.commit()
     return {"message": f"Job with ID {id} has been successfully deleted."}
 
-def update(id: int, request: schemas.DifficultyIn, db: Session):
+def update(id: int, request: schemas.JobIn, db: Session):  # Fixed schema reference
     data_update = db.query(models.Job).filter(models.Job.id == id)
     if not data_update.first():
         raise HTTPException(
